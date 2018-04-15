@@ -19,7 +19,7 @@ baseurl:               ''
 
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
-#lang:                  en
+lang:                  en
 languages: ["en", "ru"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css"]
