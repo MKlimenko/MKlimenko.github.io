@@ -28,8 +28,8 @@ tags: [C++]
 # check out `_featured_categories` and `_featured_tags` respectively.
 ---
 
-Long time no see. Let us talk about one minor thing just to keep going.
-In real-time applications often, it is the matter of microseconds. In practice, a hot path should be optimized as well as possible, often rewritten in assembly. For example, we have a class that encapsulates some data and has some methods. In addition, one of the methods works perfectly fine without accessing the internal data: 
+Давно не виделись, как-то забегался и не мог найти время написать. Давайте начнем разговор о небольшой вещи, а потом пойдут более серьезные статьи. Тем более, переезд на GitHub Pages это отличный повод попробовать что-то новое. 
+В приложениях реального времени счет зачастую идет на микросекунды. На практике это означает, что горячий путь программы должен быть максимально оптимизирован, вплоть до написания на ассемблере. Допустим, у нас есть класс, который содержит некоторые поля с данными и методы. Вдобавок, один из методов прекрасно работает без доступа к внутренним данным объекта:
 
 ```cpp
 struct Foo {
@@ -44,7 +44,7 @@ void bar(){
 }
 ```
 
-When you call a class method it silently passes ```this``` pointer to the function. It is clear from the assembly (thanks to Matt Godbolt):
+При вызове метода класса происходит неявная передача указателя ```this``` в функцию. Это прекрасно видно в генерируемом ассемблере (спасибо, Matt Godbolt!):
 
 ```assembly
 foo DB 01H DUP (?)
@@ -65,7 +65,7 @@ ret 0
 Foo::SophisticatedCopy ENDP
 ```
 
-Static members have no access to internal data, because they are independent from the object. Can we use it as an advantage? 
+Статические методы не имеют доступа к внутренним данным, поскольку они не привязаны ни к какому объекту. Можем ли мы использовать это в качестве преимущества?
 
 ```cpp
 struct Foo {
@@ -80,7 +80,7 @@ void bar_static(){
 }
 ```
 
-Turns out we can!
+Оказывается, что можем!
 
 ```assembly
 bar_static PROC
@@ -98,4 +98,4 @@ ret 0
 Foo::SophisticatedCopyStatic ENDP
 ```
 
-You may say "Why would I want to save two processor instructions? They’re cheap!" and most of the time you would be correct. However, imagine a system (real-time, mostly), that calls this function ten thousand times a second. That is twenty thousand extra instructions that have no point. Small optimization, but pays off well.
+Вы можете сказать: "Зачем мне пытаться сэкономить две процессорные инструкции? Они же дешёвые," — и в большинстве случаев будете правы. Однако, представьте систему (чаще всего, реального времени), которая вызывает эту функцию десять тысяч раз в секунду. Это двадцать тысяч лишних инструкций, в которых нет абсолютно никакого смысла. Это маленькая оптимизация, которая дает очень хороший выигрыш. 
