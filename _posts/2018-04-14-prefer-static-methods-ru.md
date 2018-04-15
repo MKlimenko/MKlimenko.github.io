@@ -38,7 +38,7 @@ struct Foo {
     void SophisticatedCopy(const unsigned* src, unsigned* dst) {
         // .. sophisticated algorithm
     }
-};
+} foo;
 
 void bar(){
     foo.SophisticatedCopy(src, dst);
@@ -74,7 +74,7 @@ struct Foo {
     static void SophisticatedCopyStatic(const unsigned* src, unsigned* dst) {
         // .. sophisticated algorithm
     }
-};
+} foo;
 
 void bar_static(){
     foo.SophisticatedCopyStatic(src, dst);

@@ -60,8 +60,10 @@ for (uint64_t shift = 0; shift < 20; ++shift){
 Looks pretty great and obvious, isn't it? It's fast (I mean really fast), it's very low on the memory consumption and, the most important, it's simple. Easy to understand, easy to support.
 
 But it doesn't cover two very important cases:
-Change of the sign of the navigational message bit;
-PLL errors due to the low SNR.
+
+1. Change of the sign of the navigational message bit;
+2. PLL errors due to the low SNR.
+
 If we want to stick with the bitwise algorithm, these cases will give us some serious headache. Taking the possibility of the sign change into account immediately makes the algorithm more complicated, because we have to compare the input not with one mask, but with four for every shift!
 
 And the second case makes it even worse. We can no longer rely on the ```if (shifted_code == input)``` condition. Now the receiver on every step has to write (memory consumption, remember?) the difference betweed the input and the shifted code. Four times for every sign combination. 
