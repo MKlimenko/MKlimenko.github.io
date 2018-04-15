@@ -18,6 +18,7 @@ image: /assets/img/vector_signal_generator/n5182.jpg
 # (only visible to search engines) by setting:
 # hide_description: true
 # hide_image: true
+lang: en
 
 # (Optional) Each post can have zero or more categories, and zero or more tags.
 # The difference is that categories will be part of the URL, while tags will not.

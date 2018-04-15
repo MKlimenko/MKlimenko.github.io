@@ -20,6 +20,10 @@ baseurl:               ''
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
 lang:                  en
+languages: ["en", "ru"]
+default_lang: "en"
+exclude_from_localization: ["javascript", "images", "css"]
+parallel_localization: true
 
 # The title of your blog. Used in the sidebar and the browser tab.
 title:                 GNSS C++ solutions
@@ -176,6 +180,7 @@ plugins:
   - jekyll-gist
   - jekyll-optional-front-matter
   - jekyll-paginate
+  - jekyll-polyglot
   - jekyll-readme-index
   - jekyll-redirect-from
   - jekyll-relative-links

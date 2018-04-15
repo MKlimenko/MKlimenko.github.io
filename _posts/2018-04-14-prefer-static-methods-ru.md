@@ -18,6 +18,7 @@ title: Предпочитайте статические методы класс
 # (only visible to search engines) by setting:
 # hide_description: true
 # hide_image: true
+lang: ru
 
 # (Optional) Each post can have zero or more categories, and zero or more tags.
 # The difference is that categories will be part of the URL, while tags will not.
