@@ -6,6 +6,7 @@ title: Application processing in GNSS
 lang: en
 categories: [english]
 tags: [GNSS, C++]
+comments: true
 ---
 
 > Disclaimer: this post is way outdated. I shall write an update as soon as I get some time. That's still ok, but I've found a better solution.

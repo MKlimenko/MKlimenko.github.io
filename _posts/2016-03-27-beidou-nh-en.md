@@ -27,6 +27,7 @@ categories: [english]
 tags: [GNSS, C++]
 # If you want a category or tag to have its own page,
 # check out `_featured_categories` and `_featured_tags` respectively.
+comments: true
 ---
 
 Beidou signal is pretty similar to the GPS C/A L1 signal [[src]](http://www2.unb.ca/gge/Resources/beidou_icd_english_ver2.0.pdf).

@@ -27,6 +27,7 @@ categories: [english]
 tags: [C++]
 # If you want a category or tag to have its own page,
 # check out `_featured_categories` and `_featured_tags` respectively.
+comments: true
 ---
 
 I was writing a little post about performing a remote power reset, but it is not quite there yet, so I’ll share with you some of the ideas about multithreading in UI applications. Let’s say we’re developing a simple client-server application that is required to use a callback function every time there is new data available. Therefore, we need to listen the port for the incoming data constantly, which is impossible in the main thread. Here comes the multithreading: we have to spawn a listener thread, while our main thread is waiting for the instructions.

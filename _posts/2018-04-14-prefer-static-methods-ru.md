@@ -27,6 +27,7 @@ categories: [russian]
 tags: [C++]
 # If you want a category or tag to have its own page,
 # check out `_featured_categories` and `_featured_tags` respectively.
+comments: true
 ---
 
 Давно не виделись, как-то забегался и не мог найти время написать. Давайте начнем разговор о небольшой вещи, а потом пойдут более серьезные статьи. Тем более, переезд на GitHub Pages это отличный повод попробовать что-то новое. 

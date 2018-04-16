@@ -27,6 +27,7 @@ categories: [english]
 tags: [C++]
 # If you want a category or tag to have its own page,
 # check out `_featured_categories` and `_featured_tags` respectively.
+comments: true
 ---
 
 Long time no see. Let us talk about one minor thing just to keep going.

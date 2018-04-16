@@ -27,6 +27,7 @@ categories: [english]
 tags: [GNSS, C++]
 # If you want a category or tag to have its own page,
 # check out `_featured_categories` and `_featured_tags` respectively.
+comments: true
 ---
 
 Long story short: modern RF devices are awesome. Especially if you've learned everything you know on the old valve generators and scopes, there's just a huge amount of possibilities.

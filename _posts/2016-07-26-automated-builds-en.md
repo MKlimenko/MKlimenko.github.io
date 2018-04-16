@@ -27,6 +27,7 @@ categories: [english]
 tags: [C++]
 # If you want a category or tag to have its own page,
 # check out `_featured_categories` and `_featured_tags` respectively.
+comments: true
 ---
 
 First of all: GitLab is an open-source git service. About a year ago, when I asked for any type of source control admins gave me an access to our git server. For a long time I've used only a few of its features, just straightforward git pushes to save my work. However, things were about to change very soon. Currently I'm working on a very complicated project, which involves multiple types of projects (DSP, ARM, API, UI), which requires a lot of SDK’s and IDE’s to build. And when we were forced to wait for three hours to install Qt (hello to corporate proxies), I’ve decided that it would be great to make a dedicated build server, which will pull every new commit from git and handle all the builds. Brief search told me about Jenkins, but I was too lazy to set this thing up. Later that day I’ve visited our corporate git webpage and one menu entry has caught my attention: "Builds". Simply put it’s an integrated build tasker, which engages when new commit is pushed.

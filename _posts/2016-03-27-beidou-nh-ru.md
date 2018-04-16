@@ -6,6 +6,7 @@ image: /assets/img/beidou_signal_structure.png
 lang: ru
 categories: [russian]
 tags: [GNSS, C++]
+comments: true
 ---
 
 Сигнал Beidou, в принципе, очень похож на сигнал GPS C/A L1 [[src]](http://www2.unb.ca/gge/Resources/beidou_icd_english_ver2.0.pdf).

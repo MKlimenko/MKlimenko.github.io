@@ -27,6 +27,7 @@ categories: [english]
 tags: [GNSS, C++]
 # If you want a category or tag to have its own page,
 # check out `_featured_categories` and `_featured_tags` respectively.
+comments: true
 ---
 
 We live in the digital era. Even if you have no idea what is the difference between RAM and the CPU, or between GSM and GPS, you have to accept the fact that the vast majority of the surrounding things have something digital inside. It may be either a simple RFID chip on a pack of milk or public transport ticket, or a complicated device hidden in a beautiful enclosure.

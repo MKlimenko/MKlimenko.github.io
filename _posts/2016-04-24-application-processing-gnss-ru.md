@@ -6,6 +6,7 @@ title: Application processing in GNSS
 lang: en
 categories: [russian]
 tags: [GNSS, C++]
+comments: true
 ---
 
 > Disclaimer: этот пост очень сильно устарел. Я напишу обновлённую версию как только появится время. Представленный тут подход нормальный, но я нашёл гораздо лучшее решение.
