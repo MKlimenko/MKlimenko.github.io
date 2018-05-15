@@ -152,9 +152,9 @@ volatile auto device_registers_placement =
 
 ```
 
-No, we're certain, that every read will be performed.
+Now, we're certain, that every read will be performed.
 
-> N.B. Accessing registers modified by the hardware may be treated as a multi-threaded application. Therefore, it is worth considering using std::atomic<T*> instead of volatile T*. Unfortunately, our production compilers don't fully support C++11 (NM SDK is C++98 with no STL whatsoever, ARM Compiler 5 has C++11 at language-level, but their highly embedded-optimized STL is C++03), so I can't battle test it. However, compiler explorer shows promising disassembly: [link](https://godbolt.org/g/JS3nBz).
+> N.B. Accessing registers modified by the hardware may be treated as a multi-threaded application. Therefore, it is worth considering using ```std::atomic<T*>``` instead of ```volatile T*```. Unfortunately, our production compilers don't fully support C++11 (NM SDK is C++98 with no STL whatsoever, ARM Compiler 5 has C++11 at language-level, but their highly embedded-optimized STL is C++03), so I can't battle test it. However, compiler explorer shows promising disassembly: [link](https://godbolt.org/g/JS3nBz).
 
 Ok, the register part is over, adding a level of indirection: let's set up a device. Most of the time, devices can be represented as a group of registers or other devices, as simple as that:
 

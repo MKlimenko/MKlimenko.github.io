@@ -3,7 +3,7 @@ layout: post
 
 # The title of your post
 title: Application processing in GNSS
-lang: en
+lang: ru
 categories: [russian]
 tags: [GNSS, C++]
 comments: true
