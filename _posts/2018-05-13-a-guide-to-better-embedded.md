@@ -77,7 +77,7 @@ The idea behind this is the possibility to create abstractions and separate laye
 
 Imagine you have a board with some chip on it and your job is to set up some block. First of all, you open the datasheet and see something like this:
 
-![bbp2](/assets/img/embedded_guide/bbp2.png)
+![bbp2](/assets/img/embedded_guide/BBP2.png)
 
 Ok, we have a vague understanding of the SoC. Our job is to make the DDC (digital down converter, very useful stuff often used in hardware-based digital signal processing) work as we want to. The simplified schematic is below:
 
@@ -203,4 +203,4 @@ This whole thing is called hardware abstraction layer (HAL). It provides the pro
 2. Model development enhances the understanding of the hardware developers are working with.
 3. With models, you can debug in post-mortem mode. Collect command dump or some information and run your model with that data. 
 
-In this article, I tried to convince you that the hardware-oriented code can be written in a good way and with no pain for future maintainers. 
+In this article, I tried to convince you that the hardware-oriented code can be written in a good way and with no pain for future maintainers.
