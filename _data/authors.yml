@@ -1,13 +1,7 @@
-# The primary author of this blog.
-# Must be the same as `author` in `_config.yml`.
-# You can change `author1` to your shortname.
 author1:
-  # Replace <...> with your own (remove the < >)
   name:              Michael Klimenko
   email:             mklimenko29@gmail.com
 
-  # Used at the bottom of each page and at the top of the `about` layout
-  # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
     Hello! My name is Michael and I'm the Lead Software Engineer at  [RC Module](https://www.module.ru/en/). 
     I represent the R&D department, which is responsible for developing end-user digital signal processing devices.
@@ -25,7 +19,7 @@ author1:
   # Social media icons in sidebar.
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
-#    twitter:         <username>
     github:          MKlimenko
     email:           mailto:mklimenko29@gmail.com
     vk:              m_klimenko
+    linkedin:        mklimenko29
