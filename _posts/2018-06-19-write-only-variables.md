@@ -155,3 +155,49 @@ Register<register_address> reg;
 ```
 
 And we're done for today. You may fiddle with the code [here](https://godbolt.org/g/fyZYzD). It really looks to me like a nice little task to chat about.
+
+Update:
+
+Here's the write-only part:
+
+```cpp
+template <std::size_t address> 
+class Register {
+private:
+    static volatile inline std::uint32_t &ref = *reinterpret_cast<std::uint32_t*>(address);
+public:
+    static void Set(std::uint32_t val){
+        ref = val;
+    }
+
+    Register& operator=(std::uint32_t val){
+        ref = val;
+        return *this;
+    }
+};
+```
+
+And the read-only:
+
+```cpp
+template <std::size_t address> 
+class Register {
+private:
+    static volatile inline std::uint32_t &ref = *reinterpret_cast<std::uint32_t*>(address);
+public:
+    static std::uint32_t Get(){
+        return ref;
+    }
+
+    template <typename T>
+    operator T() const{
+        static_assert(std::is_same_v<T, std::uint32_t>, "You should assign this register to the std::uint32_t value"); 
+        return T();
+    }
+
+    operator std::uint32_t() const {
+        return ref;
+    }
+
+};
+```
