@@ -201,3 +201,100 @@ public:
 
 };
 ```
+
+Update2:
+
+A couple of days has passed and I has found an even better (more flexible and universal) solution. We will create the base class with all of the operations (read and write) declared `protected`. The code is [here](https://godbolt.org/g/JRtwEp) to play.
+
+```cpp
+template <std::size_t address> 
+class RegisterBase {
+private:
+    static volatile inline std::uint32_t &ref = *reinterpret_cast<std::uint32_t*>(address);
+protected:
+    static std::uint32_t Get(){
+        return ref;
+    }
+
+    static void Set(std::uint32_t val){
+        ref = val;
+    }
+
+    RegisterBase& operator=(std::uint32_t val){
+        ref = val;
+        return *this;
+    }
+
+    template <typename T>
+    operator T() const{
+        static_assert(std::is_same_v<T, std::uint32_t>, "You should assign this register to the std::uint32_t value"); 
+        return T();
+    }
+
+    operator std::uint32_t() const {
+        return ref;
+    }
+};
+```
+
+To get read-only and write-only we will inherit from the base class and change the visibility of certain methods:
+
+```cpp
+template <std::size_t address>
+class RegisterRead : public RegisterBase<address> {
+public:
+    static std::uint32_t Get(){
+        return RegisterBase<address>::Get();
+    }
+
+    template <typename T>
+    operator T() const{
+        return RegisterBase<address>::operator T();
+    }
+
+    operator std::uint32_t() const{
+        return RegisterBase<address>::operator std::uint32_t();
+    }
+};
+
+template <std::size_t address>
+class RegisterWrite : public RegisterBase<address> {
+public:
+    static void Set(std::uint32_t val){
+        return RegisterBase<address>::Set(val);
+    }
+
+    RegisterWrite& operator=(std::uint32_t val){
+        return static_cast<RegisterWrite&>(RegisterBase<address>::operator=(val));
+    }
+};
+```
+
+Note the `static_cast<>` part. Because `RegisterBase<address>::operator=` returns a reference to the base class, we should cast it to the reference to the derived class object.
+
+The following code is pretty much the same:
+
+```cpp
+RegisterRead<register_address> reg_read;
+RegisterWrite<register_address> reg_write;
+
+ void foo() {
+     auto dst = read_only;
+ }
+
+void RegAssign() {
+    std::uint32_t dst = reg_read;
+}
+
+void RegGet() {
+    auto dst = reg_read.Get();
+}
+
+void RegSet(std::uint32_t val) {
+    reg_write.Set(val);
+}
+
+void RegGetCast(std::uint32_t val) {
+    reg_write = val;
+}
+``` 
