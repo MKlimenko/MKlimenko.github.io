@@ -91,31 +91,25 @@ public:
     };
 
 private:
-    HMODULE hModule = nullptr;
     HRSRC hResource = nullptr;
     HGLOBAL hMemory = nullptr;
 
     Parameters p;
 
 public:
-    Resource(int resource_id, std::string_view resource_class) {
-        hModule = GetModuleHandle(NULL);
-        hResource = FindResource(hModule, MAKEINTRESOURCE(resource_id), resource_class.data());
-        hMemory = LoadResource(hModule, hResource);
+    Resource(int resource_id, const std::string &resource_class) {
+        hResource = FindResource(nullptr, MAKEINTRESOURCEA(resource_id), resource_class.c_str());
+        hMemory = LoadResource(nullptr, hResource);
 
-        p.size_bytes = SizeofResource(hModule, hResource);
+        p.size_bytes = SizeofResource(nullptr, hResource);
         p.ptr = LockResource(hMemory);
-    }
-
-    ~Resource() {
-        FreeResource(hMemory);
     }
 };
 ```
 
 The most interesting part here is the constructor, where all the acquisition is performed.
 
-First of all, by passing `NULL` to the `GetModuleHandle()` we acquire the descriptor of the current module (process). `FindResource()` function determines the location of a resource with `resource_id` type and `resource_class name` in the `hModule` module. If there is such a resource, the function will return the corresponding handle, `NULL` otherwise.
+First of all, by passing `NULL` to the `GetModuleHandle()` we acquire the descriptor of the current module (process). `FindResource()` function determines the location of a resource with `resource_id` type and `resource_class name` in the module that has created the current process. If there is such a resource, the function will return the corresponding handle, `NULL` otherwise.
 
 `LoadResource()` retrieves a handle, which may be converted to a pointer (`void*`, since there is no type information at this point) by the `LockResource()` function. `SizeofResource()` returns the number of bytes of the resource. 
 
@@ -124,7 +118,7 @@ The best way to handle the existing data is to use a non-owning array, something
 ```cpp
 class Resource {
 /// ...
-    auto GetResourceString() {
+    auto GetResourceString() const {
         std::string_view dst;
         if (p.ptr != nullptr)
             dst = std::string_view(reinterpret_cast<char*>(p.ptr), p.size_bytes);
