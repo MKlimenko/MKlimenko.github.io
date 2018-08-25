@@ -7,6 +7,10 @@ tags: [C++]
 comments: true
 ---
 
+>
+>**UPD:** As Shafik Yaghmour has pointed out, the solution below is an undefined behaviour, due to the use of an inactive member of the union. Another solution is using the fact, that we are allowed by the standard to cast pointers to `char (std::int8_t)` and `unsigned char (std::uint8_t)`. So we get rid of pointers, fill an array of bytes, reverse it and copy the data back to the user. Here's the [link](https://godbolt.org/z/j8LHmC) to play with.
+>
+
 When we're dealing with binary protocols there's always a question about the order of bytes. Often embedded devices have big-endian and Intel-based PC's utilize little-endian. To illustrate it, let's visualize how the 0x11223344 `std::uint32_t` value lies in the memory:
 
 | Byte offset       | 3        | 2        | 1        | 0        |
