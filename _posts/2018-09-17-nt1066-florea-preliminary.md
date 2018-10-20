@@ -7,6 +7,8 @@ tags: [GNSS, C++]
 comments: true
 ---
 
+__UPDATE__: Check out the hands-on [review](/english/2018/10/20/nt1066-florea-review/).
+
 As you may know, our MC149.01 GNSS receiver is built upon two NTLab NT1065 front-ends. The task of the front-end is simple, yet crucial for the receiver quality. It amplifies the signal, translates it from the radio- to the intermediate frequency (~1.6 GHz to ~10 MHz), filters it and, optionally, quantizes with an internal ADC onboard.
 
 Unfortunately, due to the limitations of the NT1065, we were forced to use two chips and use only 1.5 of them, like in the schematic below:
