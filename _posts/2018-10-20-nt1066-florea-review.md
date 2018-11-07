@@ -37,6 +37,8 @@ The setup software is similar to the one used for the NT1065. Bear in mind, that
 
 ## Frequency response
 
+> **UPDATE:** As pointed out by Andrei, the NTLab employee, the frequency response of the evaluation board is heavily affected by the SAW filters. I misread the schematic and thought that there are inputs both before and after the filters (*LNA_IN* and *MIX_IN*). Therefore, the following frequency responses do not represent the LPF of the frontend, but the combination of the LPF and the SAW filter.
+
 Now comes the interesting part. When I was reading the documentation for the first time, low-pass filters' frequency response looked quite strange to me. The passband was too wide.
 
 ![LPF](/assets/img/nt1066_hands_on/lpf_old.png)
@@ -63,11 +65,7 @@ Just look at the L1 band (1590 MHz). Cutoff frequencies are about 5 MHz less tha
 
 ![L1](/assets/img/nt1066_hands_on/ch_1.png)
 
-Don't get me wrong, there's nothing critical about this. However, I must point out two things:
-
-1. LPF behaves differently than it is stated by the documentation;
-2. LPF behavior depends on the LO frequency, not the channel number;
-4. Additional passband will result in more noise at the input of the correlator and, therefore, decreased SNR.
+As it was pointed out, the measured frequency response is the combination of the on-chip LPF and the SAW filter. Unfortunately, the *MIX_IN* input (after the SAW-filter) is not available and the only way to measure the LPF is to modify the board.
 
 ## Signal processing
 
