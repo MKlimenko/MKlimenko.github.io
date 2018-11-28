@@ -154,20 +154,10 @@ public:
     auto operator()(std::string_view file) {
         return Gather(file);
     }
-
-    static ResourceHolder& GetHolder() {
-        static ResourceHolder rh;
-        return rh;
-    }
-
-private:
-    ResourceHolder() = default;
-    ~ResourceHolder() = default;
-
 };
 
 namespace rh {
-    ResourceHolder embed = ResourceHolder::GetHolder();
+    ResourceHolder embed;
 }
 ```
 
