@@ -1,15 +1,17 @@
 ---
 layout: post
-title: Configuration-driven polymorphism
+title: Configuration-driven polymorphism or reordering functions in run-time
 lang: en
 categories: [english]
 tags: [C++]
 comments: true
 ---
 
-Today I'd like to share with you a technique I've been working on for some time now. It is called a configuration-driven polymorphism (CDP) and may be used to create a chain of function calls with different signatures during the run-time via reading some arbitrary configuration file.
+Today I'd like to share with you an approach I've been working on for some time now. It is called a configuration-driven polymorphism (CDP) and may be used to create a chain of function calls with different signatures during the run-time via reading some arbitrary configuration file.
 
-> TL;DR: CDP allows you to wrap your API in a way to allow other programmers to rearrange the functions in the variety of ways. You may give neural network primitives to the data scientists to let them test their new approaches and hypothesis. You may decide what's better: distortion into the compressor or vice versa. 
+Usually, this kind of tasks is solved via various scripting languages by binding C++ code to them. Some hardware platforms, however, are very limited and don't provide any scripting possibilities. This is the case when CDP will allow you to bring in some of the interpreted goodness to the compiled application.
+
+> TL;DR: CDP allows you to wrap your API in a way to allow other programmers to rearrange the functions in the variety of ways. You may give neural network primitives to the data scientists to let them test their new approaches and hypothesis. You may decide what's better in guitar audio processing: distortion into the compressor or vice versa. 
 
 ## Motivation
 
