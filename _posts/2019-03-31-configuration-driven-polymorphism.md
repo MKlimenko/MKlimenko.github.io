@@ -239,6 +239,38 @@ A constructor of the class:
 
 Voila, we're ready to go. Now we just call the `Process` method, which iterates over the processing vector and calls the derived `operator()`. In the end, we're getting the result in another `std::variant`, but a simple visitor will be able to retrieve it and do whatever we want.
 
+The configuration will look like this, but it's always up to you and the format you're most familiar with:
+
+```xml
+<Configuration>
+    <Function>
+        <Name>Multiplier</Name>
+        <Parameters>
+            <Parameter>-0.001</Parameter>
+            <Parameter>8e-6</Parameter>
+        </Parameters>
+    </Function>
+    <Function>
+        <Name>ElementwiseMultiplier</Name>
+        <Parameters>
+            <Parameter>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </Parameter>
+        </Parameters>
+    </Function>
+    <Function>
+        <Name>Accumulator</Name>
+    </Function>
+    <Function>
+        <Name>InverseSign</Name>
+    </Function>
+</Configuration>
+```
+
+
 ## Comparison with the handwritten chain of functions
 
 Since we're C++ programmers, we care about possible performance penalties, induced by this approach. There are two major downsides that I can think of:
