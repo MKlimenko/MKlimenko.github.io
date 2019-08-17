@@ -16,9 +16,9 @@ std::vector<std::vector<std::vector<int>>> vec;
 
 vec.resize(height);
 for (int i = 0; i < height; ++i) {
- vec[i].resize(width);
- for (int j = 0; j < width; ++j)
- vec[i][j].resize(depth);
+    vec[i].resize(width);
+    for (int j = 0; j < width; ++j)
+        vec[i][j].resize(depth);
 }
 ```
 
@@ -28,10 +28,10 @@ My first thought was constructors to the rescue!
 
 ```cpp
 std::vector<std::vector<std::vector<int>>> b(
- height, std::vector<std::vector<int>>(
- width, std::vector<int>(
- depth)
- )
+    height, std::vector<std::vector<int>>(
+    width, std::vector<int>(
+    depth)
+    )
 );
 ```
 
@@ -44,45 +44,45 @@ Another thought has visited my head, that our compile times weren't long enough 
 #include <vector>
 
 namespace detail {
- template<typename T, std::size_t sz>
- struct vector_type {
- using type = std::vector<typename vector_type<T, sz - 1>::type>;
- };
- template<typename T>
- struct vector_type<T, 1> {
- using type = T;
- };
+    template<typename T, std::size_t sz>
+    struct vector_type {
+        using type = std::vector<typename vector_type<T, sz - 1>::type>;
+    };
+    template<typename T>
+    struct vector_type<T, 1> {
+        using type = T;
+    };
 
- template<typename T, std::size_t sz>
- using vector_type_t = typename vector_type<T, sz>::type;
+    template<typename T, std::size_t sz>
+    using vector_type_t = typename vector_type<T, sz>::type;
 }
 
 template <typename T>
 struct VectorGenerator {
- static auto Generate(std::size_t last_arg) { 
- return std::vector<T>(last_arg);
- }
+    static auto Generate(std::size_t last_arg) { 
+        return std::vector<T>(last_arg);
+    }
 
- template <typename ...Args>
- static auto Generate(std::size_t first_arg, Args... args) {
- using vector = std::vector<typename detail::vector_type_t<T, 1 + sizeof...(args)>>;
+    template <typename ...Args>
+    static auto Generate(std::size_t first_arg, Args... args) {
+        using vector = std::vector<typename detail::vector_type_t<T, 1 + sizeof...(args)>>;
 
- return vector(first_arg, VectorGenerator<T>::Generate(args...));
- }
+        return vector(first_arg, VectorGenerator<T>::Generate(args...));
+    }
 };
 
 int main() {
- auto b = VectorGenerator<int>::Generate(1, 2, 3, 4, 5, 6, 7, 8); 
- std::cout << b.size() << ", ";
- std::cout << b[0].size() << ", ";
- std::cout << b[0][0].size() << ", ";
- std::cout << b[0][0][0].size() << ", ";
- std::cout << b[0][0][0][0].size() << ", ";
- std::cout << b[0][0][0][0][0].size() << ", ";
- std::cout << b[0][0][0][0][0][0].size() << ", ";
- std::cout << b[0][0][0][0][0][0][0].size();
+    auto b = VectorGenerator<int>::Generate(1, 2, 3, 4, 5, 6, 7, 8); 
+    std::cout << b.size() << ", ";
+    std::cout << b[0].size() << ", ";
+    std::cout << b[0][0].size() << ", ";
+    std::cout << b[0][0][0].size() << ", ";
+    std::cout << b[0][0][0][0].size() << ", ";
+    std::cout << b[0][0][0][0][0].size() << ", ";
+    std::cout << b[0][0][0][0][0][0].size() << ", ";
+    std::cout << b[0][0][0][0][0][0][0].size();
 
- return 0;
+    return 0;
 }
 ```
 
