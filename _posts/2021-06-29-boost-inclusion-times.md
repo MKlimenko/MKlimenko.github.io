@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Boost libraries inclusion penalty
+title: Estimating the penalty of including Boost libraries
 lang: en
 categories: [english]
 tags: [C++]
