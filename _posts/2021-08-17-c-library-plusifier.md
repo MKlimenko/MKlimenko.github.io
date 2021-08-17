@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Automate your C library type-bades overload resolutions with C++17 
+title: Automate your C library type-based overload resolutions with C++17 
 lang: en
 categories: [english]
 tags: [C++]
