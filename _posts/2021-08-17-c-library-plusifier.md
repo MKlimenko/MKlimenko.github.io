@@ -9,6 +9,10 @@ comments: true
 
 Every time I was working with a C library, I missed the power and capability of the type system C++ provides. That's why I developed a simple C++17 header-only helper library to pack the multiple type-dependent C-style functions into single overload deduced at compile-time. No external libraries are required. Repo link: https://github.com/MKlimenko/plusifier. Currently, it's just the header and a compile-time test file, CMake integration coming soon.
 
+>
+>**UPD:** Some of the comments (somewhy I can't see them now) suggested [this](https://www.youtube.com/watch?v=n-W56XbXHHM) lightning talk by Niel Waldren. It is indeed a slightly less bulky solution, but, in my opinion, it won't trigger a warning with a type conversion mismatch (`std::size_t` vs plain `int`) and, due to the usage of `std::function`, it's heavier to compile. On my local machine results with the clang-10 via WSL2 it took twice as long to compile: 359 vs 183 ms.
+>
+
 - [Motivation](#motivation)
 - [Usage and examples](#usage-and-examples)
   - [Function overloading](#function-overloading)
