@@ -118,9 +118,9 @@ To create a sine with an NCO it's required to precalculate the lookup table that
 
 Another thing worth pointing out: if your lookup table is filled with integers (scaled sine values) you may find that the bus width is not enough for several consecutive operations. For that matter, you might use a so-called normalizer block, which is a scale-down operation. To illustrate this: your input is an 8-bit and the lookup table is also using 8 bits to represent the sine. When you multiply the two numbers the worst-case scenario is that you'll require 17 bits to store the result.
 
-> The rule of thumb: when you're adding two integer numbers, the required bit depth will be increased by one from the max: $result\_bit\_depth = 1 + max(bit\_depth\_first, bit\_depth\_second)$. 
+> The rule of thumb: when you're adding two integer numbers, the required bit depth will be increased by one from the max: *result_bit_depth = 1 + max(bit_depth_first, bit_depth_second)*. 
 > 
-> If you're multiplying two integer numbers you're facing the sum of the bit depths increased by one: $result\_bit\_depth = 1 + bit\_depth\_first * bit\_depth\_second$. 
+> If you're multiplying two integer numbers you're facing the sum of the bit depths increased by one: result_bit_depth = *1 + bit_depth_first} * bit_depth_second*. 
 
 This is an interesting and very well-reviewed topic, mainly targeted at the microelectronics and FPGA engineers, but if you think this chapter would benefit from a more detailed review please do let me know.
 
@@ -222,7 +222,7 @@ The point of accumulating is the implicit low-pass filtering with a $\frac{sin(x
 
 The final operation in the digital frontend is to save the final group signal into the local memory in the format, suitable for the used correlator implementation. This is a hardware-dependent block and all the possibilities should be thoroughly benchmarked. 
 
-One of the things worth pointing out here is that since the digital frontend can be treated as a continuation of the traditional analog RF frontend, it's possible to interpret the signal packer as some kind of the ADC. For example, if there's no interference present (or mitigated, more on that in [Part 2: Jamming mitigation](#part-2-jamming-mitigation)), the resulting signal can be stored with low precision: 1 or 2 bits, like the ADCs, used widely in GNSS frontends. 
+One of the things worth pointing out here is that since the digital frontend can be treated as a continuation of the traditional analog RF frontend, it's possible to interpret the signal packer as some kind of the ADC. For example, if there's no interference present (or mitigated, more on that in [Part 2: Jamming mitigation](/english/2022/06/20/gnss-sdr-part-2-jamming-mitigation)), the resulting signal can be stored with low precision: 1 or 2 bits, like the ADCs, used widely in GNSS frontends. 
 
 Another benefit of such low-precision signal storage is the possibility to implement the correlator block to operate on such packed data. It will allow to increase the throughput of the block and reduce the required silicon area.
 
