@@ -9,18 +9,8 @@ comments: true
 
 # Global Navigation Satellite Systems Software-Defined Receivers explained. Part 1: Digital frontend
 
-```mermaid!
-flowchart LR
-input[ADC input data] --> mixer[Mixer]
 
-subgraph Single digital frontend channel
-    mixer --> resampler[Resampler]
-    resampler --> jamming_mitigation["(Optional) <br> Jamming mitigation"]
-    jamming_mitigation --> packer[Signal packer]
-end
-
-packer --> memory[Memory]
-```
+![Digital frontend](/assets/img/gnss-sdr/mermaid_2.svg)
 
 - [Part 0: Hardware and system design](/english/2022/06/20/gnss-sdr-part-0-hardware-and-system-design)
 - [Part 1: Digital frontend](/english/2022/06/20/gnss-sdr-part-1-digital-frontend)

@@ -31,20 +31,7 @@ A general schematic of the GNSS receiver is presented below with the high-level 
 
 The baseband signal is quantized and sampled in the ADC and then processed by the digital frontend, acquisition engine, correlation engine, tracking loops etc. The tracking loop results are used to generate the observables and with (optional) external data the receiver performs the positioning routines. On top of that, there is a user interaction like position, velocity and time (PVT) and observables data output, generation of the synchronized timescale pulses, various external events registration and so on.
 
-```mermaid!
-flowchart LR
-antenna[Antenna]--->rf[Multiband <br> RF frontend]
-subgraph GNSS receiver
-    ref_clock[Reference <br> clock]-->rf
-    rf-->adc[ADC]
-    ref_clock-->adc
-    adc-->baseband[Baseband <br> processing]
-    baseband-->positioning[Positioning]
-end
-baseband <--> acquisition[Signal <br> acquisition]
-external_data[External data] --> positioning
-positioning --> user[User <br> interaction]
-```
+![High-level overview](/assets/img/gnss-sdr/mermaid_0.svg)
 
 To be honest, with all the receivers I've made over the last decade, the system design was by far my favourite stage of development. It involves a lot of research and communication with the potential customers, handling of both software and hardware aspects, like PCB, mechanical, environmental, not to say the RF and electrical.
 
@@ -77,40 +64,8 @@ The first gain-controlled amplifier, which is often omitted in the low-end front
 
 Nowadays it's common to have all the functions of the frontend in a single RF integrated circuit. This approach allows to reduce the footprint of the receiver, simplify the overall design and reduce the cost both of the receiver itself and the R&D expenses. There are two major players in COTS (commercially available off-the-shelf) RF frontends: Maxim Integrated (now part of Analog Devices) with MAX2769/MAX2771 chips and NTLab with NT1065/NT1068/NT1066/NT1062 device family. Let's illustrate a hardware part of the L1/L2 receiver:
 
-```mermaid!
-flowchart LR
-antenna[Multiband <br> antenna] --> bias_t[Bias tee]
-subgraph Receiver board
-  bias_t --> lna[Low-noise<br>amplifier]
-  lna --> splitter[Signal<br>splitter]
-  splitter --> saw_l1[Bandpass <br> filter L1]
-  splitter --> saw_l2[Bandpass <br> filter L2]
-  saw_l1 ---> amplifier_l1[Amplifier L1]
-  saw_l2 ---> amplifier_l2[Amplifier L2]
-  reference_xo[Reference <br> oscillator] --> clock_buffer[Clock <br> buffer]
-  subgraph RF frontend
-    amplifier_l1 --> agc_l1[AGC]
-    agc_l1 --> amplifier_l1
-    amplifier_l1 --> mixer_l1[Mixer L1]
-    clock_buffer --> pll_l1[PLL L1]
-    clock_buffer --> pll_clock[PLL <br> ADC clock]
-    clock_buffer --> pll_l2[PLL L2]
-    pll_l1 --> mixer_l1
-    pll_clock --> adc_l2
-    pll_l2 --> mixer_l2
-    amplifier_l2 --> agc_l2[AGC]
-    amplifier_l2 --> mixer_l2[Mixer L2]
-    agc_l2 --> amplifier_l2
-    mixer_l1 --> lpf_l1[Low-pass <br> filter L1]
-    mixer_l2 --> lpf_l2[Low-pass <br> filter L2]
-    lpf_l1 --> adc_l1["(Optional) <br> ADC L1"]
-    pll_clock ---> adc_l1
-    lpf_l2 --> adc_l2["(Optional) <br> ADC L2"]
-  end
-  adc_l1 --> baseband[Baseband <br> processor]
-  adc_l2 --> baseband
-end
-```
+
+![Hardware part](/assets/img/gnss-sdr/mermaid_1.svg)
 
 ## Frequency plan
 
