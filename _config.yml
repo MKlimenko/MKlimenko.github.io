@@ -169,11 +169,6 @@ kramdown:
 # To remove Google Anaylics from your page, remove the line below.
 # google_analytics: UA-117513301-1
 
-google:
-  tag_manager:
-    container_id: G-7WM9TGSBMK
-
-
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
 disqus:                MKlimenko

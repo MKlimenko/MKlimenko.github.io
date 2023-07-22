@@ -15,6 +15,15 @@
 <!--
 Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
 -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7WM9TGSBMK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7WM9TGSBMK');
+</script>
 <script>
   document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
     function e(e){
@@ -105,4 +114,3 @@ Example code for using Matamo as alternative analytics solution.
 </script>
 {% endif %}
 {% endcomment %}
-{% gtm body %}
