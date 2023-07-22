@@ -44,6 +44,7 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-titles-from-headings"
   gem "jekyll-include-cache"
+  gem "jekyll-google-tag-manager"
 
   # Non-Github Pages plugins:
   gem "jekyll-last-modified-at"
