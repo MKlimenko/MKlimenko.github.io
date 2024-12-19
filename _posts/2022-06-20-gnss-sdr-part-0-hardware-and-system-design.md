@@ -62,7 +62,7 @@ The first gain-controlled amplifier, which is often omitted in the low-end front
 
 > There's a way to overcome this issue with an approach, usually found in RADARs, called the bandpass sampling. It's based on the properties of the digital signal and allows to use of the ADC as a perfect mixer. There's an [article](https://doi.org/10.22184/1993-8578.2021.14.7s.64.65) I'm happy to share or discuss where I demonstrate that with sufficient amplification this approach is equivalent and even surpasses the traditional RF frontends in terms of positioning precision. 
 
-Nowadays it's common to have all the functions of the frontend in a single RF integrated circuit. This approach allows to reduce the footprint of the receiver, simplify the overall design and reduce the cost both of the receiver itself and the R&D expenses. There are two major players in COTS (commercially available off-the-shelf) RF frontends: Maxim Integrated (now part of Analog Devices) with MAX2769/MAX2771 chips and NTLab with NT1065/NT1068/NT1066/NT1062 device family. Let's illustrate a hardware part of the L1/L2 receiver:
+Nowadays it's common to have all the functions of the frontend in a single RF integrated circuit. This approach allows to reduce the footprint of the receiver, simplify the overall design and reduce the cost both of the receiver itself and the R&D expenses. There are two major players in COTS (commercially available off-the-shelf) RF frontends: Maxim Integrated (now part of Analog Devices) with MAX2769/MAX2771 chips and NTLab with NT1065/NT1066/NT1062 device family. Let's illustrate a hardware part of the L1/L2 receiver:
 
 
 ![Hardware part](/assets/img/gnss-sdr/mermaid_1.svg)
